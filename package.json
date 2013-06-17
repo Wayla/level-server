@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/juliangruber/level-server.git"
+    "url": "git://github.com/Wayla/level-server.git"
   },
-  "homepage": "https://github.com/juliangruber/level-server",
+  "homepage": "https://github.com/Wayla/level-server",
   "dependencies": {
     "optimist": "~0.5.2",
     "multilevel": "~4.0.5",
@@ -25,8 +25,8 @@
   ],
   "author": {
     "name": "Julian Gruber",
-    "email": "mail@juliangruber.com",
-    "url": "http://juliangruber.com"
+    "email": "julian@wayla.com",
+    "url": "http://wayla.com"
   },
   "license": "MIT"
 }
