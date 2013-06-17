@@ -1,0 +1,32 @@
+{
+  "name": "level-server",
+  "description": "Standalone LevelDB file server.",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/juliangruber/level-server.git"
+  },
+  "homepage": "https://github.com/juliangruber/level-server",
+  "dependencies": {
+    "optimist": "~0.5.2",
+    "multilevel": "~4.0.5",
+    "level-serve": "0.0.0",
+    "level": "~0.10.0"
+  },
+  "bin": {
+    "level-server": "./bin/server.js"
+  },
+  "keywords": [
+    "leveldb",
+    "static",
+    "file",
+    "server",
+    "bin"
+  ],
+  "author": {
+    "name": "Julian Gruber",
+    "email": "mail@juliangruber.com",
+    "url": "http://juliangruber.com"
+  },
+  "license": "MIT"
+}
