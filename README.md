@@ -6,13 +6,30 @@ Standalone LevelDB file server.
 ## Usage
 
 Given a database full of files at `./db`, create a http server on port 8000
-that serves them:
+and a multilevel server on port 9000:
 
 ```bash
-$ level-server --path ./db --http 8000
+$ level-server --path ./db --http 8000 --multilevel 9000
 ```
 
-Then:
+Then connect to it from a client:
+
+```js
+var multilevel = require('multilevel');
+var getServer = require('multilevel-serve');
+var net = require('net');
+
+var db = multilevel.client(getServer.manifest);
+var server = getServer(db);
+```
+
+Now you can use all of [level-serve](https://github.com/level-serve)'s api:
+
+```js
+server.store('foo', 'Bar! :D');
+```
+
+And then get this file via http:
 
 ```bash
 $ curl http://localhost:8000/files/foo
@@ -27,12 +44,11 @@ Host a standalone LevelDB file server.
 Usage: level-server [options]
 
 Options:
-  --path      Serve local database
-  --addr      Serve remote database
-  --http      Port to host http server on  [required]
-  --help, -h  Print usage instructions
-
-Missing required arguments: http
+  --path              Serve local database
+  --addr              Serve remote database
+  --http              Port to host http server on        [required]
+  --multilevel, --ml  Port to host multilevel server on
+  --help, -h          Print usage instructions
 ```
 
 ## Installation

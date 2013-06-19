@@ -8,6 +8,7 @@ var optimist = require('optimist');
 var Serve = require('level-serve');
 var http = require('http');
 var multilevel = require('multilevel');
+var addServer = require('multilevel-serve');
 var level = require('level');
 var net = require('net');
 
@@ -20,12 +21,19 @@ var argv = optimist
   .describe('http', 'Port to host http server on')
   .demand('http')
 
+  .describe('multilevel', 'Port to host multilevel server on')
+  .alias('multilevel', 'ml')
+
   .describe('help', 'Print usage instructions')
   .alias('help', 'h')
 
   .argv;
 
 if (argv.help || !argv.path && !argv.addr) return optimist.printHelp();
+
+/**
+ * Get `db`.
+ */
 
 var db;
 
@@ -36,7 +44,7 @@ if (argv.path) {
   // remote db
   db = multilevel.client();
   var con;
-  if (/[0-9]{2,5}/.test(argv.addr)) {
+  if (/^[0-9]+$/.test(argv.addr)) {
     con = net.connect(argv.addr);
   } else {
     var segs = argv.addr.split(':');
@@ -45,7 +53,27 @@ if (argv.path) {
   db.pipe(con).pipe(db);
 }
 
+/**
+ * Create server.
+ */
+
 var server = Serve(db);
+
+/**
+ * Host http server.
+ */
+
 http.createServer(function (req, res) {
   server.serve(req, res);
 }).listen(argv.http);
+
+/**
+ * Host multilevel server.
+ */
+
+if (argv.multilevel) {
+  addServer(db, server);
+  net.createServer(function (con) {
+    con.pipe(multilevel.server(db)).pipe(con);
+  }).listen(argv.multilevel);
+}
