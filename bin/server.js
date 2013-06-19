@@ -64,7 +64,7 @@ var server = Serve(db);
  */
 
 http.createServer(function (req, res) {
-  server.serve(req, res);
+  server.handle(req, res);
 }).listen(argv.http);
 
 /**
