@@ -10,7 +10,7 @@
   "dependencies": {
     "optimist": "~0.5.2",
     "multilevel": "~4.0.5",
-    "level-serve": "0.0.0",
+    "level-serve": "1.1.0",
     "level": "~0.10.0",
     "multilevel-serve": "0.0.0"
   },
