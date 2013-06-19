@@ -1,7 +1,9 @@
 
 # level-server
 
-Standalone LevelDB file server.
+Standalone [LevelDB](https://github.com/rvagg/node-levelup) file server. Put
+data into it using [multilevel](https://github.com/juliangruber/multilevel)
+and get it server over http.
 
 ## Usage
 
