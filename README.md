@@ -50,6 +50,8 @@ Options:
   --addr              Serve remote database
   --http              Port to host http server on        [required]
   --multilevel, --ml  Port to host multilevel server on
+  --keyEncoding       keyEncoding for levelUp
+  --valueEncoding     valueEncoding for levelUp
   --help, -h          Print usage instructions
 ```
 

@@ -24,6 +24,9 @@ var argv = optimist
   .describe('multilevel', 'Port to host multilevel server on')
   .alias('multilevel', 'ml')
 
+  .describe('keyEncoding', 'keyEncoding for levelUp')
+  .describe('valueEncoding', 'valueEncoding for levelUp')
+
   .describe('help', 'Print usage instructions')
   .alias('help', 'h')
 
@@ -39,7 +42,10 @@ var db;
 
 if (argv.path) {
   // local db
-  db = level(argv.path);
+  var opts = {};
+  if (argv.keyEncoding) opts.keyEncoding = argv.keyEncoding;
+  if (argv.valueEncoding) opts.valueEncoding = argv.valueEncoding;
+  db = level(argv.path, opts);
 } else {
   // remote db
   db = multilevel.client();
