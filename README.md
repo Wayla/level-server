@@ -3,7 +3,8 @@
 
 Standalone [LevelDB](https://github.com/rvagg/node-levelup) file server. Put
 data into it using [multilevel](https://github.com/juliangruber/multilevel)
-and get it served over http.
+and get it served over http. Also has
+[level-sublevel](https://github.com/dominictarr/level-sublevel).
 
 ## Usage
 

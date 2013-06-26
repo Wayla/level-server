@@ -11,6 +11,7 @@ var multilevel = require('multilevel');
 var addServer = require('multilevel-serve');
 var level = require('level');
 var net = require('net');
+var SubLevel = require('level-sublevel');
 
 var argv = optimist
   .usage('Host a standalone LevelDB file server.\nUsage: $0 [options]')
@@ -45,7 +46,7 @@ if (argv.path) {
   var opts = {};
   if (argv.keyEncoding) opts.keyEncoding = argv.keyEncoding;
   if (argv.valueEncoding) opts.valueEncoding = argv.valueEncoding;
-  db = level(argv.path, opts);
+  db = SubLevel(level(argv.path, opts));
 } else {
   // remote db
   db = multilevel.client();
