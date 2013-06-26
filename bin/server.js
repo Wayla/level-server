@@ -12,6 +12,7 @@ var addServer = require('multilevel-serve');
 var level = require('level');
 var net = require('net');
 var SubLevel = require('level-sublevel');
+var debug = require('debug')('level-server');
 
 var argv = optimist
   .usage('Host a standalone LevelDB file server.\nUsage: $0 [options]')
@@ -71,6 +72,7 @@ var server = Serve(db);
  */
 
 http.createServer(function (req, res) {
+  debug('serving %s', req.url);
   server.handle(req, res);
 }).listen(argv.http);
 
@@ -81,6 +83,7 @@ http.createServer(function (req, res) {
 if (argv.multilevel) {
   addServer(db, server);
   net.createServer(function (con) {
+    debug('new multilevel client');
     con.pipe(multilevel.server(db)).pipe(con);
   }).listen(argv.multilevel);
 }

@@ -1,7 +1,7 @@
 {
   "name": "level-server",
   "description": "Standalone LevelDB file server.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/Wayla/level-server.git"
@@ -13,7 +13,8 @@
     "level-serve": "1.1.0",
     "level": "~0.10.0",
     "multilevel-serve": "0.0.0",
-    "level-sublevel": "~4.7.0"
+    "level-sublevel": "~4.7.0",
+    "debug": "~0.7.2"
   },
   "bin": {
     "level-server": "./bin/server.js"
